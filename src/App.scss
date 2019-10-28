@@ -1,0 +1,329 @@
+/* ====================================================
+CSS RESET
+======================================================= */
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%; // 1rem = 10px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Noto Sans', 'Oxygen', 'Ubuntu', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+}
+
+.world {
+    height: 100vh;
+    position: relative;
+}
+
+.dock {
+    background: url(images/dock.svg);
+    flex: 3;
+    height: 100px;
+}
+
+.title {
+    font-family: MarkerFelt-Thin;
+    font-size: 100px;
+    color: #000000;
+    letter-spacing: -7.5px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.heading {
+    margin: auto;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 35px;
+}
+
+.ocean {
+    flex: 1;
+    background: url(images/ocean.svg);
+}
+
+.floor {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+}
+
+.backdrop {
+    &::before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1400;
+        top: 100%;
+        animation: fade-up 0.5s forwards;
+    }
+}
+
+.spinner {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-left: 10px solid white;
+    margin: auto;
+    border-radius: 50px;
+    top: calc(50% - 75px);
+    animation: spin 1s infinite;
+}
+
+.spinner__inner {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    border-right: 4px solid white;
+    border-radius: 25px;
+    animation: spin-left 0.5s linear infinite;
+    margin: auto;
+    top: 19%;
+}
+
+.zombie {
+    background: url(images/zombies.png) 0 0;
+    height: 200px;
+    width: 135px;
+    background-size: cover;
+    position: absolute;
+    bottom: 80px;
+    left: 30%;
+    z-index: 500;
+}
+
+.person {
+    background: url(images/person.png) 0 0;
+    height: 200px;
+    background-size: cover;
+    width: 84px;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: scaleX(-1);
+    z-index: 500;
+
+    .chat {
+        transform: scaleX(-1);
+        left: -75px;
+        top: -100px;
+    }
+}
+
+.chat {
+    position: relative;
+    top: -115px;
+    font-size: 20px;
+    width: 175px;
+    border: 2px solid lightgrey;
+    border-radius: 3px;
+    padding: 10px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &::after {
+        content: '';
+        border-bottom: 20px solid transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 20px solid lightgrey;
+        position: absolute;
+        bottom: -40px;
+        left: 25px;
+    }
+
+    &__note {
+        font-style: italic;
+        font-size: 10px;
+    }
+}
+
+.btn {
+    background: linear-gradient(180deg, #0f00ff 0%, #9390f4 100%);
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    height: 60px;
+    min-width: 150px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.25s;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background: linear-gradient(90deg, #0f00ff 0%, #9390f4 100%);
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+    }
+}
+
+.btn + .btn {
+    margin-left: 15px;
+}
+
+.modal-container {
+    background: linear-gradient(180deg, #0f00ff 0%, #9390f4 100%);
+    border: 1px solid #979797;
+    border-radius: 8px;
+    z-index: 1500;
+    width: 70%;
+    height: 50%;
+    position: fixed;
+    margin: auto;
+    left: 15%;
+    top: -50%;
+    transition: all 0.5s;
+    opacity: 0;
+    animation: comeDown 0.5s forwards;
+
+    &.open {
+        top: 10%;
+        opacity: 1;
+    }
+}
+
+.modal {
+    &__heading {
+        font-size: 34px;
+        color: white;
+        padding: 15px;
+    }
+
+    &__footer {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+.active {
+    outline: 5px solid limegreen;
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: '';
+        background: url(images/checkmark.svg) center no-repeat;
+        background-size: cover;
+        height: 20px;
+        width: 20px;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.move-left {
+    animation: moveLeft 2s ease-in-out forwards;
+    transform: scaleX(-1);
+}
+
+.move-right {
+    animation: moveRight 2s ease-in-out forwards;
+    transform: scaleX(1);
+}
+
+.fish {
+    left: 69%;
+    transform: scaleX(1);
+}
+
+.hook {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    &__title {
+        color: white;
+        padding: 5px 15px 10px 15px;
+        font-size: 15px;
+        background-color: lightgrey;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        font-weight: bold;
+    }
+
+    &__img {
+        flex: 3;
+        background-position: center;
+        background-size: cover;
+        background-color: lightgrey;
+        border-bottom: 1px solid white;
+        &--useState {
+            background-image: url(images/useState.svg);
+        }
+
+        &--useEffect {
+            background-image: url(images/useEffect.svg);
+        }
+
+        &--useContext {
+            background-image: url(images/useContext.svg);
+        }
+
+        &--useRef {
+            background-image: url(images/useRef.svg);
+        }
+    }
+}
+
+.hooks-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+@keyframes moveLeft {
+    100% {
+        left: -250px;
+    }
+}
+
+@keyframes moveRight {
+    100% {
+        left: 69%;
+    }
+}
+
+@keyframes fade-up {
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-left {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes comeDown {
+    100% {
+        top: 10%;
+        opacity: 1;
+    }
+}
