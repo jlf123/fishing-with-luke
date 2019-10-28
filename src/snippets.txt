@@ -1,0 +1,26 @@
+/*****
+
+const intervalId = setInterval(() => {
+    setBackgroundXPos(backgroundXPos =>
+        backgroundXPos > 600 ? 0 : backgroundXPos + size
+    );
+}, 200);
+
+setTimeout(() => {
+    clearInterval(intervalId);
+    nextEvent();
+}, payload.duration);
+
+*****/
+
+/***** 
+const { spriteStatuses, updateSpriteStatus } = useContext(StatusContext);
+
+if (spriteStatuses[type] === 'destroyed') return null;
+
+if (spriteActive && eventType === 'destroy') {
+    updateSpriteStatus(type, 'destroyed');
+    nextEvent();
+}
+
+*****/
